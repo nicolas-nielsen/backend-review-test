@@ -32,8 +32,13 @@ class GhArchiveProvider
         }
 
         while (!gzeof($stream)) {
+            $line = gzgets($stream);
+            if (!$line) {
+                $this->logger->error('There was an error while reading the file', ['file' => $file]);
+                break;
+            }
+
             try {
-                $line = gzgets($stream);
                 /** @var EventData $eventData */
                 $eventData = $this->serializer->deserialize($line, EventData::class, 'json');
             } catch (\Exception $e) {

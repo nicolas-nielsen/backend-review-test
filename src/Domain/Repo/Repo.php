@@ -24,13 +24,4 @@ class Repo
     {
         return $this->url;
     }
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            (int) $data['id'],
-            $data['name'],
-            $data['url']
-        );
-    }
 }

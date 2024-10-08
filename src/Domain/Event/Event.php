@@ -21,8 +21,7 @@ class Event
         private array $payload,
         private \DateTimeImmutable $createdAt,
         private ?string $comment
-    )
-    {
+    ) {
         EventType::assertValidChoice($type);
         $this->type = $type;
 

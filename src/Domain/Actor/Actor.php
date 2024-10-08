@@ -33,14 +33,4 @@ class Actor
     {
         return $this->avatarUrl;
     }
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            (int) $data['id'],
-            $data['login'],
-            $data['url'],
-            $data['avatar_url']
-        );
-    }
 }
