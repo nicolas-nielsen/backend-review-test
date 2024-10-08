@@ -89,8 +89,8 @@ class ImportGitHubEventsCommand extends Command
                 $actorData->avatar_url
             );
 
-            if (!array_key_exists($actor->id(), $actors) && !$this->readActorRepository->exist($actor)) {
-                $actors[$actor->id()] = $actor;
+            if (!array_key_exists($actor->getId(), $actors) && !$this->readActorRepository->exist($actor)) {
+                $actors[$actor->getId()] = $actor;
             }
 
             $repoData = $ghArchiveEvent->repo;
@@ -99,8 +99,8 @@ class ImportGitHubEventsCommand extends Command
                 $repoData->name,
                 $repoData->url
             );
-            if (!array_key_exists($repo->id(), $repos) && !$this->readRepoRepository->exist($repo)) {
-                $repos[$repo->id()] = $repo;
+            if (!array_key_exists($repo->getId(), $repos) && !$this->readRepoRepository->exist($repo)) {
+                $repos[$repo->getId()] = $repo;
             }
 
             $event = new Event(
@@ -113,8 +113,8 @@ class ImportGitHubEventsCommand extends Command
                 null
             );
 
-            if (!$this->readEventRepository->exist($event->id())) {
-                $events[$event->id()] = $event;
+            if (!$this->readEventRepository->exist($event->getId())) {
+                $events[$event->getId()] = $event;
                 $batchCount++;
             }
 

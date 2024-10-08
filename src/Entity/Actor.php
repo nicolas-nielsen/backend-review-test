@@ -16,22 +16,22 @@ class Actor
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="NONE")
      */
-    public int $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    public string $login;
+    private string $login;
 
     /**
      * @ORM\Column(type="string")
      */
-    public string $url;
+    private string $url;
 
     /**
      * @ORM\Column(type="string")
      */
-    public string $avatarUrl;
+    private string $avatarUrl;
 
     public function __construct(int $id, string $login, string $url, string $avatarUrl)
     {
@@ -41,23 +41,23 @@ class Actor
         $this->avatarUrl = $avatarUrl;
     }
 
-    public function id(): int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function login(): string
+    public function getLogin(): string
     {
         return $this->login;
     }
 
 
-    public function url(): string
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function avatarUrl(): string
+    public function getAvatarUrl(): string
     {
         return $this->avatarUrl;
     }

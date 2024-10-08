@@ -33,16 +33,16 @@ SQL;
     {
         $eventsToMigrate = [];
         foreach ($events as $event) {
-            if (!$this->readEventRepository->exist($event->id())) {
+            if (!$this->readEventRepository->exist($event->getId())) {
                 $eventsToMigrate[] = sprintf(
                     "(%d, %d, %d, '%s', %d, '%s', '%s', '%s')",
-                    $event->id(),
-                    $event->actor()->id(),
-                    $event->repo()->id(),
-                    $event->type(),
-                    $event->count(),
-                    json_encode($event->payload(), JSON_HEX_APOS),
-                    $event->createAt()->format(DATE_ATOM),
+                    $event->getId(),
+                    $event->getActor()->getId(),
+                    $event->getRepo()->getId(),
+                    $event->getType(),
+                    $event->getCount(),
+                    json_encode($event->getPayload(), JSON_HEX_APOS),
+                    $event->getCreatedAt()->format(DATE_ATOM),
                     null
                 );
             }

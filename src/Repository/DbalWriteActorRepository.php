@@ -22,7 +22,7 @@ class DbalWriteActorRepository implements WriteActorRepository
 
         foreach ($actors as $actor) {
             if (!$this->readActorRepository->exist($actor)) {
-                $actorsToMigrate[] = sprintf("(%d, '%s', '%s', '%s')", $actor->id(), $actor->login(), $actor->url(), $actor->avatarUrl());
+                $actorsToMigrate[] = sprintf("(%d, '%s', '%s', '%s')", $actor->getId(), $actor->getLogin(), $actor->getUrl(), $actor->getAvatarUrl());
             }
         }
 

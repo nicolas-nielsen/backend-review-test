@@ -22,7 +22,7 @@ class DbalWriteRepoRepository implements WriteRepoRepository
 
         foreach ($repos as $repo) {
             if (!$this->readRepoRepository->exist($repo)) {
-                $reposToMigrate[] = sprintf("(%d, '%s', '%s')", $repo->id(), $repo->name(), $repo->url());
+                $reposToMigrate[] = sprintf("(%d, '%s', '%s')", $repo->getId(), $repo->getName(), $repo->getUrl());
             }
         }
 

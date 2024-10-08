@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity()
@@ -52,14 +51,14 @@ class Event
     /**
      * @ORM\Column(type="datetime_immutable", nullable=false)
      */
-    private \DateTimeImmutable $createAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $comment;
 
-    public function __construct(int $id, string $type, Actor $actor, Repo $repo, array $payload, \DateTimeImmutable $createAt, ?string $comment)
+    public function __construct(int $id, string $type, Actor $actor, Repo $repo, array $payload, \DateTimeImmutable $createdAt, ?string $comment)
     {
         $this->id = $id;
         EventType::assertValidChoice($type);
@@ -67,7 +66,7 @@ class Event
         $this->actor = $actor;
         $this->repo = $repo;
         $this->payload = $payload;
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
         $this->comment = $comment;
 
         if ($type === EventType::COMMIT) {
@@ -75,39 +74,39 @@ class Event
         }
     }
 
-    public function id(): int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function type(): string
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function count(): int
+    public function getCount(): int
     {
         return $this->count;
     }
 
-    public function actor(): Actor
+    public function getActor(): Actor
     {
         return $this->actor;
     }
 
-    public function repo(): Repo
+    public function getRepo(): Repo
     {
         return $this->repo;
     }
 
-    public function payload(): array
+    public function getPayload(): array
     {
         return $this->payload;
     }
 
-    public function createAt(): \DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->createAt;
+        return $this->createdAt;
     }
 
     public function getComment(): ?string

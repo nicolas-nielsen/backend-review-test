@@ -23,7 +23,7 @@ class DbalReadActorRepository implements ReadActorRepository
         SQL;
 
         $result = $this->connection->fetchOne($sql, [
-            'id' => $actor->id()
+            'id' => $actor->getId()
         ]);
 
         return (bool) $result;
