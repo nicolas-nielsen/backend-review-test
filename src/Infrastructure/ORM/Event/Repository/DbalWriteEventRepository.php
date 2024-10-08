@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\ORM\Event\Repository;
 
 use App\Domain\Event\Data\UpdateCommentData;
@@ -29,7 +31,6 @@ SQL;
 
     /**
      * @param Event[] $events
-     * @return void
      */
     public function insertBatch(array $events): void
     {
@@ -51,7 +52,7 @@ SQL;
         }
 
         if (!empty($eventsToMigrate)) {
-            $query = "INSERT INTO event (id, actor_id, repo_id, type, count, payload, create_at, comment) VALUES " . implode(',', $eventsToMigrate);
+            $query = 'INSERT INTO event (id, actor_id, repo_id, type, count, payload, created_at, comment) VALUES '.implode(',', $eventsToMigrate);
             $this->connection->executeQuery($query);
         }
     }

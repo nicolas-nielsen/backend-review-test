@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Provider;
 
 use App\Domain\GhArchive\EventData;
@@ -21,7 +23,7 @@ class GhArchiveProvider
 
     public function fetchEvents(string $date): \Generator
     {
-        $file = $this->url . $date . self::EXTENSION;
+        $file = $this->url.$date.self::EXTENSION;
 
         try {
             $stream = gzopen($file, 'r');
@@ -40,11 +42,11 @@ class GhArchiveProvider
             }
 
             $eventType = EventType::createFromGhArchiveEvent($eventData->type);
-            if ($eventType === EventType::PULL_REQUEST && $eventData->payload['action'] !== 'opened') {
+            if (EventType::PULL_REQUEST === $eventType && 'opened' !== $eventData->payload['action']) {
                 continue;
             }
 
-            if ($eventType !== EventType::UNHANDLED) {
+            if (EventType::UNHANDLED !== $eventType) {
                 yield $eventData;
             }
         }

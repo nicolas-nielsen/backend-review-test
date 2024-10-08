@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Controller\Event\Write;
 
 use App\Application\Dto\Event\UpdateCommentPayload;
@@ -38,7 +40,7 @@ class UpdateEventCommentAction
 
         $updateCommentData = $eventInput->createUpdateCommentData();
 
-        if($this->readEventRepository->exist($id) === false) {
+        if (false === $this->readEventRepository->exist($id)) {
             return new JsonResponse(
                 ['message' => sprintf('Event identified by %d not found !', $id)],
                 Response::HTTP_NOT_FOUND

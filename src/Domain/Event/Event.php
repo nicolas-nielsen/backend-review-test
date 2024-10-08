@@ -71,7 +71,7 @@ class Event
         $this->createdAt = $createdAt;
         $this->comment = $comment;
 
-        if ($type === EventType::COMMIT) {
+        if (EventType::COMMIT === $type) {
             $this->count = $payload['size'] ?? 1;
         }
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\ORM\Actor\Repository;
 
 use App\Domain\Actor\Actor;
@@ -24,7 +26,7 @@ class DbalReadActorRepository implements ReadActorRepository
         SQL;
 
         $result = $this->connection->fetchOne($sql, [
-            'id' => $actor->getId()
+            'id' => $actor->getId(),
         ]);
 
         return (bool) $result;

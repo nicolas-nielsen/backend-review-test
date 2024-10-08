@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\ORM\Repo\Repository;
 
 use App\Domain\Repo\Repo;
@@ -17,9 +19,9 @@ class DbalWriteRepoRepository implements WriteRepoRepository
 
     /**
      * @param Repo[] $repos
-     * @return void
      */
-    public function insertBatch(array $repos): void {
+    public function insertBatch(array $repos): void
+    {
         $reposToMigrate = [];
 
         foreach ($repos as $repo) {
@@ -29,7 +31,7 @@ class DbalWriteRepoRepository implements WriteRepoRepository
         }
 
         if (!empty($reposToMigrate)) {
-            $query = "INSERT INTO repo (id, name, url) VALUES " . implode(',', $reposToMigrate);
+            $query = 'INSERT INTO repo (id, name, url) VALUES '.implode(',', $reposToMigrate);
             $this->connection->executeQuery($query);
         }
     }

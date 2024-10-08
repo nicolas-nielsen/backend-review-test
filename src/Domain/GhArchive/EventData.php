@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\GhArchive;
 
 class EventData
@@ -11,7 +13,8 @@ class EventData
     public RepoData $repo;
     public array $payload;
 
-    public function setId(string $id): void {
+    public function setId(string $id): void
+    {
         $this->id = (int) $id;
     }
 }

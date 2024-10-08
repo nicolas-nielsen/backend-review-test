@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Dto\Event;
 
 use App\Domain\Event\Data\UpdateCommentData;
@@ -11,7 +13,8 @@ class UpdateCommentPayload
     #[Assert\NotBlank]
     public ?string $comment;
 
-    public function __construct(?string $comment) {
+    public function __construct(?string $comment)
+    {
         $this->comment = $comment;
     }
 

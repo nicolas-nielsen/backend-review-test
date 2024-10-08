@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\ORM\Repo\Repository;
 
 use App\Domain\Repo\Repo;
@@ -24,7 +26,7 @@ class DbalReadRepoRepository implements ReadRepoRepository
         SQL;
 
         $result = $this->connection->fetchOne($sql, [
-            'id' => $repo->getId()
+            'id' => $repo->getId(),
         ]);
 
         return (bool) $result;

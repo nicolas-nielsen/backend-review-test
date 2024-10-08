@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\ORM\Event\Repository;
 
 use App\Domain\Event\Data\SearchEventFilter;
@@ -27,7 +29,7 @@ SQL;
 
         return (int) $this->connection->fetchOne($sql, [
             'date' => $searchEventFilter->getDate()->format(DATE_ATOM),
-            'keyword' => '%'.$searchEventFilter->getKeyword().'%'
+            'keyword' => '%'.$searchEventFilter->getKeyword().'%',
         ]);
     }
 
@@ -43,7 +45,7 @@ SQL;
 
         return $this->connection->fetchAllKeyValue($sql, [
             'date' => $searchEventFilter->getDate()->format(DATE_ATOM),
-            'keyword' => '%'.$searchEventFilter->getKeyword().'%'
+            'keyword' => '%'.$searchEventFilter->getKeyword().'%',
         ]);
     }
 
@@ -59,7 +61,7 @@ SQL;
 
         $stats = $this->connection->fetchAllAssociative($sql, [
             'date' => $searchEventFilter->getDate()->format(DATE_ATOM),
-            'keyword' => '%'.$searchEventFilter->getKeyword().'%'
+            'keyword' => '%'.$searchEventFilter->getKeyword().'%',
         ]);
 
         $data = array_fill(0, 24, ['Commit' => 0, 'Pull Request' => 0, 'Comment' => 0]);
@@ -83,10 +85,10 @@ SQL;
 
         $result = $this->connection->fetchAllAssociative($sql, [
             'date' => $searchEventFilter->getDate()->format(DATE_ATOM),
-            'keyword' => '%'.$searchEventFilter->getKeyword().'%'
+            'keyword' => '%'.$searchEventFilter->getKeyword().'%',
         ]);
 
-        $result = array_map(static function($item) {
+        $result = array_map(static function ($item) {
             $item['repo'] = json_decode($item['repo'], true);
 
             return $item;
@@ -104,7 +106,7 @@ SQL;
         SQL;
 
         $result = $this->connection->fetchOne($sql, [
-            'id' => $id
+            'id' => $id,
         ]);
 
         return (bool) $result;

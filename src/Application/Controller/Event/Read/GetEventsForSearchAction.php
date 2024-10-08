@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Controller\Event\Read;
 
 use App\Application\Dto\Event\SearchEventFilterPayload;
@@ -17,7 +19,7 @@ class GetEventsForSearchAction
 
     public function __construct(
         ReadEventRepository $repository,
-        SerializerInterface  $serializer
+        SerializerInterface $serializer
     ) {
         $this->repository = $repository;
         $this->serializer = $serializer;
@@ -41,8 +43,8 @@ class GetEventsForSearchAction
             ],
             'data' => [
                 'events' => $this->repository->getLatest($searchEventFilter),
-                'stats' => $this->repository->statsByTypePerHour($searchEventFilter)
-            ]
+                'stats' => $this->repository->statsByTypePerHour($searchEventFilter),
+            ],
         ];
 
         return new JsonResponse($data);

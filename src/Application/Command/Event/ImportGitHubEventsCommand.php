@@ -15,17 +15,14 @@ use App\Domain\Repo\Repo;
 use App\Domain\Repo\Repository\ReadRepoRepository;
 use App\Domain\Repo\Repository\WriteRepoRepository;
 use App\Infrastructure\Provider\GhArchiveProvider;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use function App\Application\Command\array_key_exists;
 
-/**
- * This command must import GitHub events.
- * You can add the parameters and code you want in this command to meet the need.
- */
+#[AsCommand(name: 'app:import-github-events')]
 class ImportGitHubEventsCommand extends Command
 {
     private const BATCH_SIZE = 500;
@@ -41,8 +38,6 @@ class ImportGitHubEventsCommand extends Command
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:import-github-events';
 
     protected function configure(): void
     {
@@ -67,8 +62,7 @@ class ImportGitHubEventsCommand extends Command
             return Command::FAILURE;
         }
 
-        $date = $date->format('Y-m-d-H');
-
+        $date = $date->format('Y-m-d-G');
 
         $batchCount = 0;
         $events = [];
@@ -116,11 +110,10 @@ class ImportGitHubEventsCommand extends Command
 
             if (!$this->readEventRepository->exist($event->getId())) {
                 $events[$event->getId()] = $event;
-                $batchCount++;
+                ++$batchCount;
             }
 
-
-            if ($batchCount === self::BATCH_SIZE) {
+            if (self::BATCH_SIZE === $batchCount) {
                 $this->actorRepository->insertBatch($actors);
                 $this->repoRepository->insertBatch($repos);
                 $this->eventRepository->insertBatch($events);

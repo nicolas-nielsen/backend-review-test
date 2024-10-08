@@ -52,7 +52,6 @@ class Actor
         return $this->login;
     }
 
-
     public function getUrl(): string
     {
         return $this->url;
@@ -72,5 +71,4 @@ class Actor
             $data['avatar_url']
         );
     }
-
 }

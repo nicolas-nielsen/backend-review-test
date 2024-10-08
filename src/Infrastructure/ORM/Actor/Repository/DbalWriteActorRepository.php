@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\ORM\Actor\Repository;
 
 use App\Domain\Actor\Actor;
@@ -17,9 +19,9 @@ class DbalWriteActorRepository implements WriteActorRepository
 
     /**
      * @param Actor[] $actors
-     * @return void
      */
-    public function insertBatch(array $actors): void {
+    public function insertBatch(array $actors): void
+    {
         $actorsToMigrate = [];
 
         foreach ($actors as $actor) {
@@ -29,7 +31,7 @@ class DbalWriteActorRepository implements WriteActorRepository
         }
 
         if (!empty($actorsToMigrate)) {
-            $query = "INSERT INTO actor (id, login, url, avatar_url) VALUES " . implode(',', $actorsToMigrate);
+            $query = 'INSERT INTO actor (id, login, url, avatar_url) VALUES '.implode(',', $actorsToMigrate);
             $this->connection->executeQuery($query);
         }
     }
