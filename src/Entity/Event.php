@@ -85,6 +85,11 @@ class Event
         return $this->type;
     }
 
+    public function count(): int
+    {
+        return $this->count;
+    }
+
     public function actor(): Actor
     {
         return $this->actor;
