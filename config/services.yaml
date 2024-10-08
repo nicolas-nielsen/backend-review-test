@@ -26,3 +26,7 @@ services:
         tags: [ 'controller.service_arguments' ]
 
     App\Entity\EventType: ~
+
+    App\Provider\GhArchiveProvider:
+        arguments:
+            $url: '%env(GH_ARCHIVE_URL)%'

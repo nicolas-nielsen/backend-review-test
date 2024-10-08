@@ -8,6 +8,7 @@ class EventInput
 {
     /**
      * @Assert\Length(min=20)
+     * @Assert\NotBlank()
      */
     public ?string $comment;
 
