@@ -66,7 +66,7 @@ class ImportGitHubEventsCommand extends Command
             return Command::FAILURE;
         }
 
-        $date = $date->format('Y-m-d-H');
+        $date = $date->format('Y-m-d-G');
 
 
         $batchCount = 0;
