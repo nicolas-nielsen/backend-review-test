@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit;
 
-use App\Provider\GhArchiveProvider;
+use App\Infrastructure\Provider\GhArchiveProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
