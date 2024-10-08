@@ -12,11 +12,24 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            Event:
+                type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain'
-                prefix: 'App\Domain'
-                alias: App
+                dir: '%kernel.project_dir%/src/Infrastructure/ORM/Event/Mapping'
+                prefix: 'App\Domain\Event'
+                alias: Event
+            Repo:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Infrastructure/ORM/Repo/Mapping'
+                prefix: 'App\Domain\Repo'
+                alias: Repo
+            Actor:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Infrastructure/ORM/Actor/Mapping'
+                prefix: 'App\Domain\Actor'
+                alias: Actor
 
 when@test:
     doctrine:
