@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Infrastructure\ORM\Actor\Repository;
+
+use App\Domain\Actor\Actor;
+use App\Domain\Actor\Repository\ReadActorRepository;
+use Doctrine\DBAL\Connection;
+
+class DbalReadActorRepository implements ReadActorRepository
+{
+    public function __construct(private readonly Connection $connection)
+    {
+    }
+
+    public function exist(Actor $actor): bool
+    {
+        $sql = <<<SQL
+            SELECT 1
+            FROM actor
+            WHERE id = :id
+        SQL;
+
+        $result = $this->connection->fetchOne($sql, [
+            'id' => $actor->getId(),
+        ]);
+
+        return (bool) $result;
+    }
+}

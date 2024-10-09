@@ -18,22 +18,29 @@
         "symfony/dotenv": "^6.1",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "^6.1",
+        "symfony/http-client": "^6.1",
         "symfony/property-access": "^6.1",
         "symfony/property-info": "^6.1",
         "symfony/proxy-manager-bridge": "^6.1",
         "symfony/runtime": "^6.1",
         "symfony/serializer": "^6.1",
         "symfony/validator": "^6.1",
-        "symfony/yaml": "^6.1"
+        "symfony/yaml": "^6.1",
+        "ext-zlib": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "friendsofphp/php-cs-fixer": "^3.13",
         "liip/functional-test-bundle": "^4.6",
         "liip/test-fixtures-bundle": "^2.4",
+        "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^9.5",
+        "qossmic/deptrac": "^2.0",
         "symfony/browser-kit": "^6.1",
         "symfony/css-selector": "^6.1",
-        "symfony/phpunit-bridge": "^6.1"
+        "symfony/phpunit-bridge": "^6.1",
+        "symfony/stopwatch": "^6.1",
+        "symfony/web-profiler-bundle": "^6.1"
     },
     "config": {
         "allow-plugins": {

@@ -16,13 +16,14 @@ services:
     App\:
         resource: '../src/'
         exclude:
-            - '../src/Entity/'
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\Controller\:
-        resource: '../src/Controller/'
+    App\Application\Controller\:
+        resource: '../src/Application/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    App\Entity\EventType: ~
+    App\Infrastructure\Provider\GhArchiveProvider:
+        arguments:
+            $url: '%env(GH_ARCHIVE_URL)%'
