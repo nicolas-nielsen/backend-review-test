@@ -11,11 +11,8 @@ use Doctrine\DBAL\Connection;
 
 class DbalReadEventRepository implements ReadEventRepository
 {
-    private Connection $connection;
-
-    public function __construct(Connection $connection)
+    public function __construct(private readonly Connection $connection)
     {
-        $this->connection = $connection;
     }
 
     public function countAll(SearchEventFilter $searchEventFilter): int

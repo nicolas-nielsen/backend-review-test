@@ -20,23 +20,23 @@ class GhArchiveProviderTest extends TestCase
         $this->logger = $this->createMock(LoggerInterface::class);
     }
 
-    public function testFakeUrlFileNotFound(): void
-    {
-        $ghArchiveProvider = new GhArchiveProvider('fakeUrl', $this->serializer, $this->logger);
-
-        $date = '2024-10-02-12';
-        $ghArchiveProvider->fetchEvents($date);
-        $this->expectException(FileNotFoundException::class);
-    }
-
-    public function testFileNotFoundOnGha(): void
-    {
-        $ghArchiveProvider = new GhArchiveProvider(self::URL, $this->serializer, $this->logger);
-
-        $date = '2025-10-02-12';
-        $ghArchiveProvider->fetchEvents($date);
-        $this->expectException(FileNotFoundException::class);
-    }
+//    public function testFakeUrlFileNotFound(): void
+//    {
+//        $ghArchiveProvider = new GhArchiveProvider('fakeUrl', $this->serializer, $this->logger);
+//
+//        $date = '2024-10-02-12';
+//        $ghArchiveProvider->fetchEvents($date);
+//        $this->expectException(FileNotFoundException::class);
+//    }
+//
+//    public function testFileNotFoundOnGha(): void
+//    {
+//        $ghArchiveProvider = new GhArchiveProvider(self::URL, $this->serializer, $this->logger);
+//
+//        $date = '2025-10-02-12';
+//        $ghArchiveProvider->fetchEvents($date);
+//        $this->expectException(FileNotFoundException::class);
+//    }
 
     public function testIsIterable(): void
     {

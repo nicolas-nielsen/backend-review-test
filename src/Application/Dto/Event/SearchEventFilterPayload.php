@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace App\Application\Dto\Event;
 
 use App\Domain\Event\Data\SearchEventFilter;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchEventFilterPayload
 {
-    /**
-     * @var \DateTimeImmutable
-     */
-    public $date;
+    #[Assert\DateTime]
+    #[Assert\NotBlank]
+    public \DateTimeImmutable $date;
 
-    /**
-     * @var string
-     */
-    public $keyword;
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
+    public string $keyword;
 
     public function createSearchEventFilter(): SearchEventFilter
     {

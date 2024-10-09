@@ -16,18 +16,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UpdateEventCommentAction
 {
-    public function __construct(
-        private readonly WriteEventRepository $writeEventRepository,
-        private readonly ReadEventRepository $readEventRepository,
-        private readonly SerializerInterface $serializer
-    ) {
-    }
-
     #[Route(path: '/api/event/{id}/update', name: 'api_event_comment_update', methods: 'PUT')]
-    public function __invoke(Request $request, int $id, ValidatorInterface $validator): Response
-    {
+    public function __invoke(
+        Request $request,
+        int $id,
+        ValidatorInterface $validator,
+        WriteEventRepository $writeEventRepository,
+        ReadEventRepository $readEventRepository,
+        SerializerInterface $serializer
+    ): Response {
         /** @var UpdateCommentPayload $eventInput */
-        $eventInput = $this->serializer->deserialize($request->getContent(), UpdateCommentPayload::class, 'json');
+        $eventInput = $serializer->deserialize($request->getContent(), UpdateCommentPayload::class, 'json');
 
         $errors = $validator->validate($eventInput);
 
@@ -40,7 +39,7 @@ class UpdateEventCommentAction
 
         $updateCommentData = $eventInput->createUpdateCommentData();
 
-        if (false === $this->readEventRepository->exist($id)) {
+        if (false === $readEventRepository->exist($id)) {
             return new JsonResponse(
                 ['message' => sprintf('Event identified by %d not found !', $id)],
                 Response::HTTP_NOT_FOUND
@@ -48,7 +47,7 @@ class UpdateEventCommentAction
         }
 
         try {
-            $this->writeEventRepository->update($updateCommentData, $id);
+            $writeEventRepository->update($updateCommentData, $id);
         } catch (\Exception $exception) {
             return new Response(null, Response::HTTP_SERVICE_UNAVAILABLE);
         }

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
 
-class EventControllerTest extends WebTestCase
+class GetEventForSearchActionTest extends WebTestCase
 {
     protected AbstractDatabaseTool $databaseTool;
     private static $client;
@@ -42,7 +42,7 @@ class EventControllerTest extends WebTestCase
             json_encode(['comment' => 'It‘s a test comment !!!!!!!!!!!!!!!!!!!!!!!!!!!'])
         );
 
-        $this->assertResponseStatusCodeSame(204);
+        self::assertResponseStatusCodeSame(204);
     }
 
 
@@ -59,7 +59,7 @@ class EventControllerTest extends WebTestCase
             json_encode(['comment' => 'It‘s a test comment !!!!!!!!!!!!!!!!!!!!!!!!!!!'])
         );
 
-        $this->assertResponseStatusCodeSame(404);
+        self::assertResponseStatusCodeSame(404);
 
         $expectedJson = <<<JSON
               {

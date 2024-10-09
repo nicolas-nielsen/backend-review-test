@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class UpdateCommentPayload
 {
+    #[Assert\Type('string')]
     #[Assert\Length(min: 20)]
     #[Assert\NotBlank]
     public ?string $comment;
